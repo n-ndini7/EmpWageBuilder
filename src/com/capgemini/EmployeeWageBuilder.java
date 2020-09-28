@@ -8,7 +8,7 @@ public class EmployeeWageBuilder implements EmpWage{
 	public static final int IS_FULL_TIME = 1;
 	public static final int IS_PART_TIME = 2;   
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
-	private Map<String, CompanyEmpWage> companyToEmpWageMap;	
+	private Map<String, CompanyEmpWage> companyToEmpWageMap;
     public EmployeeWageBuilder() {
     	companyEmpWageList = new ArrayList<>();
     	companyToEmpWageMap = new HashMap<>();
@@ -49,12 +49,13 @@ public class EmployeeWageBuilder implements EmpWage{
 	}
 	@Override
 	public int getTotalWage(String company) {
-		return 0;
+		return companyToEmpWageMap.get(company).totalEmpWage;
 	}
 	 public static void main(String[] args) {
-		 EmployeeWageBuilder empWage = new EmployeeWageBuilder();
-		 empWage.addCompanyEmpWage("Boat",10,4,20);
-		 empWage.addCompanyEmpWage("JBL",20,5,10);
+		 EmployeeWageBuilder empWage= new EmployeeWageBuilder();
+		 empWage.addCompanyEmpWage("Boat",20,4,10);
+		 empWage.addCompanyEmpWage("JBL",10,5,20);
 		 empWage.computeEmpWage();
-	 }
+		 System.out.println("Total Wage for Boat: "+empWage.getTotalWage("Boat"));
+	 }	
 }
