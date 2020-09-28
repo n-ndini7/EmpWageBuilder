@@ -1,11 +1,12 @@
-
 package com.capgemini;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 public class EmployeeWageBuilder implements EmpWage{
 	public static final int IS_FULL_TIME = 1;
-	public static final int IS_PART_TIME = 2;
+	public static final int IS_PART_TIME = 2;   
 	private ArrayList<CompanyEmpWage> companyEmpWageList;
 	private Map<String, CompanyEmpWage> companyToEmpWageMap;	
     public EmployeeWageBuilder() {
@@ -20,9 +21,11 @@ public class EmployeeWageBuilder implements EmpWage{
     }
     @Override
 	public void computeEmpWage() {
-		CompanyEmpWage companyEmpWage = companyEmpWageList.get(0);
+    	for(int i = 0; i < companyEmpWageList.size(); i++){
+		CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 		companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
 		System.out.println(companyEmpWage);
+      }
 	}
 	private int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		int empHours = 0, totalEmpHours = 0, totalWorkingDays = 0;
@@ -52,8 +55,6 @@ public class EmployeeWageBuilder implements EmpWage{
 		 EmployeeWageBuilder empWage = new EmployeeWageBuilder();
 		 empWage.addCompanyEmpWage("Boat",10,4,20);
 		 empWage.addCompanyEmpWage("JBL",20,5,10);
-		 empWage.addCompanyEmpWage("Ubon",10,2,20);
 		 empWage.computeEmpWage();
 	 }
-
 }
